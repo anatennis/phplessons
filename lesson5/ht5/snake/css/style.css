@@ -1,0 +1,35 @@
+.invis {
+    display: none;
+}
+
+.startb {
+    position: absolute;
+    margin-top: 300px;
+    margin-left: -355px;
+    border-radius: 3px;
+    width: auto;
+    height: 20px;
+    text-transform: uppercase;
+}
+
+
+.scoret {
+    position: fixed;
+    margin-top: 610px;
+    margin-left: -50px;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-color: red;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+}
+
+.canvasst {
+    width: 608px;
+    height: 608px;
+    background-color: black;
+    border: 2px solid red;
+}
