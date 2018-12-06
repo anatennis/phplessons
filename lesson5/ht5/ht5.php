@@ -34,7 +34,7 @@ function delDir($path) { //папка snake создана для удалени
 }
 
 $path = 'C:\OSPanel\domains\php-lessons\lesson5\ht5\snake';
-delDir($path);
+//delDir($path);
 
 
 //var_dump($post);
@@ -43,22 +43,35 @@ delDir($path);
 function getURL() {
     $txtfile = 'ht5.txt';
     $post = $_POST;
-    if ($post['URL'] != null) {
+    if ($post['URL'] != null && stristr($post['URL'], 'https://')) {
         $links = file($txtfile);
         $link = $post['URL']."\r\n";
-        if (in_array($post['URL'], $links)) {
+        $isin = false;
+        for ($i=0; $i<count($links); $i++) {
+            if ($links[$i] == $link) {
+                var_dump('Link already exists');
+                $isin = true;
+                continue;
+            }
+        }
+        if (!$isin) {
+            $fp = fopen($txtfile, 'a'); // w
+            fwrite($fp, $post['URL']."\r\n");
+            fclose($fp);
+            var_dump(file($txtfile));
+        }
+       /* if (in_array($post['URL'], $links)) {
             var_dump('Link already exists');
         } else {
             $fp = fopen($txtfile, 'a'); // w
             fwrite($fp, $post['URL']."\r\n");
             fclose($fp);
             var_dump(file($txtfile));
-        }
+        }*/
     }
 
 }
 
-//getURL();
 
 ?>
 
