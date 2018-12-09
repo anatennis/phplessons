@@ -12,7 +12,12 @@ username;password;sess_id
 2)Написать обработчик регистрационной формы:
 операция добавить нового пользователя в файл.
 Логин пользователя должен быть уникальным
-(реализовать функцию поиска совпадений по имени пользователя). */
+(реализовать функцию поиска совпадений по имени пользователя).
+3)Сверстать HTML-форму входа пользователя на сайт.
+4)Написать обработчик формы входа,
+который будет проверять существование пользователя в файле,
+сверять введенный хеш пароля и хеш из файла на равенство.
+Посмотрите функции password_hash() и password_verify() */
 session_start();
 function getUsername($user) {
     $arr = explode(";", $user);
@@ -36,11 +41,14 @@ function addNewUser() {
     $datafile = 'data.csv';
     if ($post == null) { return false; }
     if (!findUsername($post['login'])) {
-        $user = $post['login'].';'.$post['pwd'].';'.$_SESSION['id'];
-        file_put_contents($datafile, $user);
-        return true;
+        $hashpwd = password_hash($post['pwd'], PASSWORD_DEFAULT);
+        $user = $post['login'].';'.$hashpwd.';'.session_id()."\r\n";
+        file_put_contents($datafile, $user, FILE_APPEND);
+        header('location: task4_auth.php');
+        exit;
+        //return true;
     } else {
-        return false;
+        echo "<h2>Пользователь с таким логином уже существует</h2>";
     }
 
 }
@@ -59,7 +67,6 @@ addNewUser();
 </head>
 <body id="bR" class="offset-3a2">
 
-<?php if (!isset($_SESSION['login'])): ?>
 <div>
     <a href="#registrF">
         <input type="button" class="openRF" value="Зарегистрироваться">
@@ -82,10 +89,6 @@ addNewUser();
             <div>
                 <input class="inpData" required type="password" placeholder="  Пароль еще раз">
             </div>
-            <p class="sh"> Я согласен получать новости по
-                <label><input checked name="smth" type="checkbox">SMS</label>
-                <label><input checked name="smth" type="checkbox">E-mail</label>
-            </p>
             <p class="podsk">
                 <label><input name="smth" type="checkbox"></label>
                 Я даю согласие на обработку и хранение моих персональных данных
@@ -101,6 +104,5 @@ addNewUser();
     </fieldset>
 </form>
 
-<?php endif; ?>
 </body>
 </html>
