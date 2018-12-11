@@ -80,7 +80,7 @@ addNewUser();
         <fieldset style="background-color: #b3d4fc">
             <div>
                 <legend class="sh" align="center"> Придумайте логин и пароль: </legend>
-                <input name="login" class="inpData" type="text" minlength="1"
+                <input name="login" required class="inpData" type="text" minlength="1"
                        maxlength="25" placeholder=" Логин">
             </div>
             <div>

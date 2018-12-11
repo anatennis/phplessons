@@ -17,12 +17,12 @@
         }
 
         function responseHandler(response) {
-            /*if (response === "add") {
+            if (response === "Auth_ok\r\n\r\n") {
                 window.location.href = "hid_p.php";
             } else {
-                console.log("вывод данных");
-            }*/
-            window.location.href = "hid_p.php";
+                console.log(response);
+            }
+            //window.location.href = "hid_p.php";
         }
 
 

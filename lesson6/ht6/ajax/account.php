@@ -29,21 +29,19 @@ function checkUser() {
     if ($user !== null) {
         if (password_verify($post['pwd'], getPwd($user))) {
             $_SESSION['login'] = $post['login'];
-            header('location: hid_p.php');
-            exit;
-            // return true;
+            return "Auth_ok";
+            //header('location: hid_p.php');
+            //exit;
         }
         else {
-            echo "Wrong password";
-            //return false;
+            return "Wrong password";
         }
     } else {
-        echo "User doesn't exist";
-        //return false;
+        return "User doesn't exist";
     }
 }
 
-checkUser();
+echo (checkUser());
 
 ?>
 
