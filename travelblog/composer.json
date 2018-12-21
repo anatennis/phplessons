@@ -1,0 +1,13 @@
+{
+    "name": "anastasia/travelblog",
+    "description": "lesson proj",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Anastasia\\Travelblog\\": "private/"
+        }
+    }
+}

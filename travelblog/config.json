@@ -1,0 +1,14 @@
+{
+  "urls":{
+    "имя ссылки":{
+      "path":"/",
+      "controller":"IndexController"
+    }
+  },
+  "urls":{
+    "имя ссылки":{
+      "path":"/article",
+      "controller":"ArticleController"
+    }
+  }
+}
